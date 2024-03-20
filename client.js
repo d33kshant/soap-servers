@@ -1,15 +1,12 @@
 import soap from 'soap'
 
-const URL = 'http://localhost:8001/calc?wsdl';
+const URL = 'http://localhost:8001/words?wsdl';
 
-if (process.argv.length < 5) {
+const text = process.argv[2]
+if (!text) {
   console.log("Missing required arguments")
   process.exit(1)
 }
-
-const op = process.argv[2]
-const one = +process.argv[3]
-const other = +process.argv[4]
 
 soap.createClient(URL, function(err, client) {
   if (err != null) {
@@ -17,8 +14,9 @@ soap.createClient(URL, function(err, client) {
   }
 
   if (client != null) {
-    client.Calculate({ op, one, other }, function(_, result) {
-      console.log(result);
+    client.GetWords({ text }, function(_, result) {
+      const words = JSON.parse(result.words)
+      console.log({ words });
     });
   }
 });
