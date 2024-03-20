@@ -4,22 +4,41 @@
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:tns="http://example.com/wsdl"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <message name="GetWordsRequest">
-        <part name="text" type="xds:string"/>
+    <message name="GetUsersRequest">
     </message>
-    <message name="GetWordsResponse">
+    <message name="GetUsersResponse">
+        <part name="result" type="xds:string"/>
+    </message>
+    <message name="CreateUserRequest">
+        <part name="name" type="xds:string"/>
+        <part name="age" type="xds:int"/>
+    </message>
+    <message name="CreateUserResponse">
         <part name="result" type="xds:string"/>
     </message>
     <portType name="Port">
-        <operation name="GetWords">
-            <input message="tns:GetWordsRequest"/>
-            <output message="tns:GetWordsResponse"/>
+        <operation name="GetUsers">
+            <input message="tns:GetUsersRequest"/>
+            <output message="tns:GetUsersResponse"/>
+        </operation>
+        <operation name="CreateUser">
+            <input message="tns:CreateUserRequest"/>
+            <output message="tns:CreateUserResponse"/>
         </operation>
     </portType>
     <binding name="Binding" type="tns:Port">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="GetWords">
-            <soap:operation soapAction="http://example.com/wsdl#Calculate"/>
+        <operation name="GetUsers">
+            <soap:operation soapAction="http://example.com/wsdl#get"/>
+            <input>
+                <soap:body use="encoded" namespace="http://example.com/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://example.com/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="CreateUser">
+            <soap:operation soapAction="http://example.com/wsdl#create"/>
             <input>
                 <soap:body use="encoded" namespace="http://example.com/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </input>
@@ -30,7 +49,7 @@
     </binding>
     <service name="Service">
         <port name="Port" binding="tns:Binding">
-            <soap:address location="http://localhost:8001/words"/>
+            <soap:address location="http://localhost:8001/user"/>
         </port>
     </service>
 </definitions>
