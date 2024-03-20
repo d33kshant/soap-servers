@@ -4,22 +4,22 @@
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:tns="http://example.com/wsdl"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <message name="GetPersonRequest">
-        <part name="person" type="tns:Person"/>
+    <message name="GetCapitalRequest">
+        <part name="contry" type="xds:string"/>
     </message>
-    <message name="GetPersonResponse">
-        <part name="person" type="tns:Person"/>
+    <message name="GetCapitalResponse">
+        <part name="capital" type="xds:string"/>
     </message>
     <portType name="Port">
-        <operation name="GetPerson">
-            <input message="tns:GetPersonRequest"/>
-            <output message="tns:GetPersonResponse"/>
+        <operation name="GetCapital">
+            <input message="tns:GetCapitalRequest"/>
+            <output message="tns:GetCapitalResponse"/>
         </operation>
     </portType>
     <binding name="Binding" type="tns:Port">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="GetPerson">
-            <soap:operation soapAction="http://example.com/wsdl#GetPerson"/>
+        <operation name="GetCapital">
+            <soap:operation soapAction="http://example.com/wsdl#GetCapital"/>
             <input>
                 <soap:body use="encoded" namespace="http://example.com/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </input>
@@ -30,14 +30,7 @@
     </binding>
     <service name="Service">
         <port name="Port" binding="tns:Binding">
-            <soap:address location="http://localhost:8001/person"/>
+            <soap:address location="http://localhost:8001/capital"/>
         </port>
     </service>
-    <complexType name="Person">
-        <sequence>
-            <element name="name" type="xsd:string"/>
-            <element name="age" type="xsd:int"/>
-            <element name="address" type="xsd:string"/>
-        </sequence>
-    </complexType>
 </definitions>
