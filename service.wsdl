@@ -4,23 +4,24 @@
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:tns="http://example.com/wsdl"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <message name="AddNumbersRequest">
+    <message name="CalculateRequest">
+        <part name="op" type="xds:string"/>
         <part name="one" type="xds:int"/>
         <part name="other" type="xds:int"/>
     </message>
-    <message name="AddNumbersResponse">
+    <message name="CalculateResponse">
         <part name="answer" type="xds:int"/>
     </message>
     <portType name="Port">
-        <operation name="AddNumbers">
-            <input message="tns:AddNumbersRequest"/>
-            <output message="tns:AddNumbersResponse"/>
+        <operation name="Calculate">
+            <input message="tns:CalculateRequest"/>
+            <output message="tns:CalculateResponse"/>
         </operation>
     </portType>
     <binding name="Binding" type="tns:Port">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="AddNumbers">
-            <soap:operation soapAction="http://example.com/wsdl#GetCapital"/>
+        <operation name="Calculate">
+            <soap:operation soapAction="http://example.com/wsdl#Calculate"/>
             <input>
                 <soap:body use="encoded" namespace="http://example.com/wsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
             </input>
@@ -31,7 +32,7 @@
     </binding>
     <service name="Service">
         <port name="Port" binding="tns:Binding">
-            <soap:address location="http://localhost:8001/add"/>
+            <soap:address location="http://localhost:8001/calc"/>
         </port>
     </service>
 </definitions>
