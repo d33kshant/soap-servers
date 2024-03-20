@@ -8,6 +8,9 @@ dependencies:
   express:
     specifier: ^4.18.3
     version: 4.18.3
+  jstoxml:
+    specifier: ^5.0.1
+    version: 5.0.1
   soap:
     specifier: ^1.0.0
     version: 1.0.0(axios@0.27.2)
@@ -407,6 +410,10 @@ packages:
 
   /js-md4@0.3.2:
     resolution: {integrity: sha512-/GDnfQYsltsjRswQhN9fhv3EMw2sCpUdrdxyWDOUK7eyD++r3gRhzgiQgc/x4MAv2i1iuQ4lxO5mvqM3vj4bwA==}
+    dev: false
+
+  /jstoxml@5.0.1:
+    resolution: {integrity: sha512-90mR0XwLzdbRr06IGsEf67Apac2ImjRbfWTVBYP7juSnnXHlW6H70b9sHGnIn5QEvXZvXxi6IXIoflzmMlRV5A==}
     dev: false
 
   /lodash@4.17.21:
