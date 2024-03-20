@@ -5,8 +5,8 @@ import fs from 'fs'
 const Service = {
   Service: {
     Port: {
-      Function: function(args) {
-        return { message: `Hello, ${args.name}!` }
+      GetPerson: function(args) {
+        return { person: args.person }
       }
     }
   }
@@ -17,7 +17,7 @@ var xml = fs.readFileSync('service.wsdl', 'utf8');
 var app = express();
 
 app.listen(8001, function() {
-  soap.listen(app, '/hello', Service, xml, function() {
-    console.log('SOAP service started at http://localhost:8001/hello?wsdl');
+  soap.listen(app, '/person', Service, xml, function() {
+    console.log('SOAP service started at http://localhost:8001/person?wsdl');
   });
 });
