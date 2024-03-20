@@ -1,8 +1,14 @@
 import soap from 'soap'
 
-const URL = 'http://localhost:8001/capital?wsdl';
+const URL = 'http://localhost:8001/add?wsdl';
 
-const country = process.argv[2] || "IN"
+if (process.argv.length < 4) {
+  console.log("Missing required arguments")
+  process.exit(1)
+}
+
+const one = +process.argv[2]
+const other = +process.argv[3]
 
 soap.createClient(URL, function(err, client) {
   if (err != null) {
@@ -10,7 +16,7 @@ soap.createClient(URL, function(err, client) {
   }
 
   if (client != null) {
-    client.GetCapital({ country }, function(_, result) {
+    client.AddNumbers({ one, other }, function(_, result) {
       console.log(result);
     });
   }
