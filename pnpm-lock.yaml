@@ -11,6 +11,9 @@ dependencies:
   soap:
     specifier: ^1.0.0
     version: 1.0.0(axios@0.27.2)
+  sqlite:
+    specifier: ^5.1.1
+    version: 5.1.1
 
 packages:
 
@@ -613,6 +616,10 @@ packages:
       xml-crypto: 3.2.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /sqlite@5.1.1:
+    resolution: {integrity: sha512-oBkezXa2hnkfuJwUo44Hl9hS3er+YFtueifoajrgidvqsJRQFpc5fKoAkAor1O5ZnLoa28GBScfHXs8j0K358Q==}
     dev: false
 
   /statuses@2.0.1:
